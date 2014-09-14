@@ -33,3 +33,9 @@ my_pois <- replicate(100, rpois(5,10)) # 100 replicates of 5 numbers from a pois
 # dates
 t3 <- "October 17, 1986 08:24"
 t4 <- strptime(t3, "%B %d, %Y %H:%M")
+
+testFxn <- function(id = 1:5) {
+  for (i in id) {
+    print(i)
+  }
+}
