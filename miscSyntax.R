@@ -25,6 +25,17 @@ summary(plants)
 table(plants$Active_Growth_Period)
 
 flips <- sample(c(0,1), size=100, replace=TRUE, prob=c(0.3, 0.7))
+
+runApp("App-1", host = "10.130.6.76", port=8080)
+library(ggplot2)
+qplot(data=mpg, displ, hwy, color=drv, geom=c("point","smooth"))
+qplot(data=mpg, displ, hwy, color=drv, geom=c("point","smooth"), method=lm)
+
+g <- ggplot(data = mpg, aes(displ, hwy))
+g + geom_point() + geom_smooth(method=lm) + facet_grid(.~drv)
+g + geom_point(color = "steelblue", size=4, alpha=0.5) + geom_smooth(method=lm) + facet_grid(.~drv) + xlab("DISPLACEMENT")
+g + geom_point(aes(color = drv), size=4, alpha=0.5) + geom_smooth(method=lm) + xlab("DISPLACEMENT")
+
 rbinom(1,size=100, prob=0.7) # number of heads in 100 tosses
 rbinom(100,size=1, prob=0.7) # vector of coin flips where p of rolling 1 is 0.7
 rnorm(n=10,mean=100,sd=25) # 10 random numbers from a dist with mean of 100 and sd of 25
