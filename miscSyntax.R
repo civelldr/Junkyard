@@ -50,3 +50,4 @@ testFxn <- function(id = 1:5) {
     print(i)
   }
 }
+Em <- aggregate(Emissions ~ year + fips, data = SCCNEI_Veh, FUN=function(x) c(med=median(x), sum=sum(x), mean=mean(x)))
