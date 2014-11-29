@@ -51,3 +51,39 @@ testFxn <- function(id = 1:5) {
   }
 }
 Em <- aggregate(Emissions ~ year + fips, data = SCCNEI_Veh, FUN=function(x) c(med=median(x), sum=sum(x), mean=mean(x)))
+
+cellLine <- read.csv("cellLine_With_Tissue.csv", header=T, na.strings="")
+
+mutDB <- merge(mutDB, ERBB3Mut, all=T)
+subset <- select(mutDB, cellline, ERBB3, RAS, BRAF, EGFR, PIK3CA, Site_Primary, Histology, Hist_Subtype1, tissue)
+HER3Mutations <- filter(subset, !is.na(ERBB3))
+
+
+write.csv(HER3Mutations, "HER3Mutations_31OCT14.csv", row.names = F)
+
+mutDB[,c(1,4,6)] # take only the cell.line, erbb3 and ras columns
+
+hema <- read.csv(file = "HEMA_PLOT_SUB.csv", header=T)
+
+png(file="CombinedCohorts_Platelets.png", width=900, height=600)
+  ggplot(hema, aes(x=factor(ElapsedDays_E), y=LBRES7, group=Current_Dose, color=Current_Dose)) + 
+    geom_point(size=3) + 
+    geom_line(aes(group=factor(Subject)), size=1) + 
+
+    ylim(0,700) + 
+dev.off()
+
+library(jsonlite)
+
+setwd(dir = "\\\\ussfrspnetfls01\\users\\<CENSORED>\\Dev")
+mycols <- rep("NULL", 42)
+mycols[c(2,3,4,24)] = c("character", "character", "character", "numeric")
+CC122Data <- read.table(file = "CC_122_DLBCL_001_Data_Dumps_24SEP2014_HEMA.csv", 
+                        header = T, 
+                        sep= ',', 
+                        strip.white = T,
+                        colClasses = mycols)
+CC122JSON <- toJSON(CC122Data, pretty=T)
+sink("CC122.json")
+cat(CC122JSON)
+sink()
