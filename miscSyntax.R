@@ -73,6 +73,14 @@ png(file="CombinedCohorts_Platelets.png", width=900, height=600)
     ylim(0,700) + 
 dev.off()
 
+  ggplot(dlbcl001_comp, aes(x=VISIT_TP, y=Pct_Chg_p4EBP1, group=Dose_Level, color=Dose_Level)) + 
+    geom_point(size=4, alpha=0.6, position = position_jitter(w = 0.1)) + 
+    # geom_line(aes(group=factor(Subject_Number)), size=1) +
+    scale_x_discrete(limits=unique(dlbcl001$VISIT_TP)) +
+    labs(x="Visit Name / Timepoint", y="% change in p4EBP1 from baseline") +
+    ggtitle("CC-122-DLBCL001 Arm A") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
 library(jsonlite)
 
 setwd(dir = "\\\\ussfrspnetfls01\\users\\<CENSORED>\\Dev")
