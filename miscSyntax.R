@@ -95,3 +95,6 @@ CC122JSON <- toJSON(CC122Data, pretty=T)
 sink("CC122.json")
 cat(CC122JSON)
 sink()
+
+### dplyr http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html
+filter(flights, month == 1, day == 1); filter(flights, month == 1 | month == 2)
