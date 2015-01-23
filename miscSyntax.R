@@ -51,6 +51,7 @@ testFxn <- function(id = 1:5) {
   }
 }
 Em <- aggregate(Emissions ~ year + fips, data = SCCNEI_Veh, FUN=function(x) c(med=median(x), sum=sum(x), mean=mean(x)))
+ggregate(len ~ dose + supp, data=tg, FUN=mean)
 
 cellLine <- read.csv("cellLine_With_Tissue.csv", header=T, na.strings="")
 
