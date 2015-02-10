@@ -51,7 +51,7 @@ testFxn <- function(id = 1:5) {
   }
 }
 Em <- aggregate(Emissions ~ year + fips, data = SCCNEI_Veh, FUN=function(x) c(med=median(x), sum=sum(x), mean=mean(x)))
-ggregate(len ~ dose + supp, data=tg, FUN=mean)
+aggregate(len ~ dose + supp, data=tg, FUN=mean)
 
 cellLine <- read.csv("cellLine_With_Tissue.csv", header=T, na.strings="")
 
@@ -99,3 +99,20 @@ sink()
 
 ### dplyr http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html
 filter(flights, month == 1, day == 1); filter(flights, month == 1 | month == 2)
+
+##### tabulate
+xtabs( ~ Analyte + DilutionFactor, data=allData)  # or wrap the whole thing in ftable()
+                    DilutionFactor
+Analyte              10000x 1000x 100x 10x 1x
+  CXCL4_50               82    82   82  82  0
+  S100A8_127             82    82   82   0  0
+  Adiponectin_1           0    82    0   0  0
+  PARC_79                 0     0   82   0  0
+  Leptin_3                0     0   82   0  0
+  PAI_1_6                 0     0   82   0  0
+  sICAM_16                0     0   82   0  0
+  sVCAM_92                0     0   82   0  0
+  TIMP_1_86               0     0   82   0  0
+  
+  addmargins(xtabs( ~ Analyte + DilutionFactor, data=allData))  # tally up the rows
+  
