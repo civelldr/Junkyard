@@ -116,3 +116,42 @@ Analyte              10000x 1000x 100x 10x 1x
   
   addmargins(xtabs( ~ Analyte + DilutionFactor, data=allData))  # tally up the rows
   
+## R E G R E S S I O N ########
+x <- c(0.8, 0.47, 0.51, 0.73, 0.36, 0.58, 0.57, 0.85, 0.44, 0.42)
+y <- c(1.39, 0.72, 1.55, 0.48, 1.19, -1.59, 1.23, -0.65, 1.49, 0.05)
+
+regression through the origin and get the slope treating y as the outcome/dep and x as the regressor/indep.
+f <- lm(y ~ 0 + x)  ## regular, but  f <- lm(y ~ 0 + x) to fit through origin
+summary(f)
+
+>>
+Coefficients:
+  Estimate Std. Error t value Pr(>|t|)
+x   0.8263     0.5817   1.421    0.189
+<<
+
+so that is:  
+y = mx + 0  # 0 is int at origin
+y = 0.8263*x
+
+plot(x,y)
+##
+data(mtcars)
+f2 <- lm(mtcars$mpg ~ mtcars$wt)
+plot(mtcars$wt, mtcars$mpg)
+abline(f2, col="red")
+>>
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  37.2851     1.8776  19.858  < 2e-16 ***
+mtcars$wt    -5.3445     0.5591  -9.559 1.29e-10 ***
+<<
+mpg = -5.3445*wt + 37.2851
+
+cov(mtcars$mpg, mtcars$wt) / (sd(mtcars$wt) * sd(mtcars$mpg)) == cor(mtcars$mpg, mtcars$wt)
+
+## Norm
+x <- c(8.58, 10.46, 9.01, 9.64, 8.86)
+xn <- (x - mean(x)) / sd(x)
+
+
