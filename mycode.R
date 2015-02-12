@@ -1,3 +1,64 @@
+###### commands from Quiz 1
+
+x <- c(17, 14, 4, 5, 13, 12, 10)
+y <- x[x > 10] <- 4
+data = read.csv("c:/Users/dpitchmen/Coursera/hw1_data.csv")
+names(data)
+head(data,2)
+nrows(data)
+tail(data,n=2)
+summary(data)
+subsetData <- subset(data, Ozone > 31 & Temp > 90 )
+
+# swirl
+y <- x[!is.na(x) & x > 0]               # only the non-NA values in x that are > 0
+my_data <- sample(c(y, z), 100)         # sample 100 values at random from vectors y and z
+vect <- c(foo = 11, bar = 2, norf = NA) # named elements
+tapply(flags$population, flags$landmass, summary) # summarize the population data by landmass
+
+## data frame summary
+dim(plants)
+obj <- object.size(plants)
+print(obj,units="Mb")
+str(plants) 
+summary(plants)
+table(plants$Active_Growth_Period)
+
+flips <- sample(c(0,1), size=100, replace=TRUE, prob=c(0.3, 0.7))
+rbinom(1,size=100, prob=0.7) # number of heads in 100 tosses
+rbinom(100,size=1, prob=0.7) # vector of coin flips where p of rolling 1 is 0.7
+rnorm(n=10,mean=100,sd=25) # 10 random numbers from a dist with mean of 100 and sd of 25
+my_pois <- replicate(100, rpois(5,10)) # 100 replicates of 5 numbers from a poisson dist with mean of 10
+
+# dates
+t3 <- "October 17, 1986 08:24"
+t4 <- strptime(t3, "%B %d, %Y %H:%M")
+
+testFxn <- function(id = 1:5) {
+  for (i in id) {
+    print(i)
+  }
+  
+## best parser! 
+DT <- fread(input = "ss06pid.csv", sep = "auto", header="auto")
+  
+## JSON file
+sink(file = "c:\\users\\dpitchmen\\desktop\\cc122subset.csv")
+C122Subset  ## JSON FILE
+sink()
+  
+## CC122 data
+myCols <- rep("NULL",42)
+myCols[c(2,3,4,24)] = c("character","character","character","numeric")
+Raw <- read.table(file='C:\\Users\\DPitchmen\\Desktop\\CC122-DLBCL-HEMA.csv', sep = ',', header = T, colClasses = myCols, strip.white = T)
+write.table(Raw, file= "c:\\users\\dpitchmen\\desktop\\cc122subset.csv", sep = ",")
+
+## mysql and UCSC web facing mysql db
+library(RMySQL)
+ucscDb <- dbConnect(MySQL(), user="genome", host="genome-mysql.cse.ucsc.edu")
+result <- dbGetQuery(ucscDb, "show databases;")
+dbDisconnect(ucscDb)
+
 myFunction <- function(){
   x <- rnorm(100)
   mean(x)
