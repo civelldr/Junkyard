@@ -40,6 +40,8 @@ testFxn <- function(id = 1:5) {
   }
   
 ## best parser! 
+install.packages("data.table")
+
 DT <- fread(input = "ss06pid.csv", sep = "auto", header="auto")
   
 ## JSON file
