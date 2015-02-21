@@ -97,6 +97,12 @@ sink("CC122.json")
 cat(CC122JSON)
 sink()
 
+## mysql and UCSC web facing mysql db
+library(RMySQL)
+ucscDb <- dbConnect(MySQL(), user="genome", host="genome-mysql.cse.ucsc.edu")
+result <- dbGetQuery(ucscDb, "show databases;")
+dbDisconnect(ucscDb)
+
 ### dplyr http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html
 filter(flights, month == 1, day == 1); filter(flights, month == 1 | month == 2)
 
