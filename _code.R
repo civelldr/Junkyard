@@ -160,4 +160,17 @@ cov(mtcars$mpg, mtcars$wt) / (sd(mtcars$wt) * sd(mtcars$mpg)) == cor(mtcars$mpg,
 x <- c(8.58, 10.46, 9.01, 9.64, 8.86)
 xn <- (x - mean(x)) / sd(x)
 
+## 
+# adjusted estimate for the expected change in mpg comparing 8 cylinders to 4.
+f <- lm(data=mtcars, mpg ~ factor(cyl) + wt)
+
+#fit1: mpg as the outcome & cylinders as a factor variable and weight as confounder. 
+#fit2: mpg as the outcome that considers the interaction between number of cylinders (as a factor variable) and weight. 
+fit1 <- lm(mpg ~ factor(cyl) + wt, data = mtcars)
+fit2 <- lm(mpg ~ factor(cyl) + wt + interaction(factor(cyl), wt), data = mtcars)
+comp <- anova(fit1, fit2) # null is that both models are the same
+comp$Pr
+
+
+
 
