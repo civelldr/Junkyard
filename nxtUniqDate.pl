@@ -51,8 +51,7 @@
 for ($y = 2015; $y <= 4444; $y++) {
 	foreach $m (@mm)  {
 		foreach $d (@dd) {
-			$str = "$y$m$d";
-			@a = split //, $str;
+			@a = split //, "$y$m$d";
 			my %seen;
 			my @unique = grep { not $seen{$_} ++ } @a;
 			if (scalar(@unique) == 8) { print @unique , "\n"; exit; }
