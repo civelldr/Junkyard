@@ -1,3 +1,15 @@
+### base graphics ###
+plot(mpg ~ hp, data = mtcars, pch = 16, cex = .9)
+
+### ggplot2 ###
+# with qplot()
+qplot(mpg, hp, data = mtcars, size = I(2))
+# or with ggplot() + geom_point()
+ggplot(mtcars, aes(mpg, hp), size = 2) + geom_point()
+# or another solution:
+ggplot(mtcars, aes(mpg, hp)) + geom_point(size = 2)
+
+
 ###### commands from Quiz 1
 
 x <- c(17, 14, 4, 5, 13, 12, 10)
