@@ -1,3 +1,23 @@
+test <- eval[eval$SubjectID %in% c("xxx","yyy","zzz"), ]
+test$ResultedDate_Fmt <- as.Date(test$ResultedDate, "%m/%d/%Y")
+ ## ALT DATE ###
+test$ResultedDate_Fmt2 <- parse_date_time(test$ResultedDate, "%m%d%Y %H%M")
+ 
+maxDate <- sqldf('select distinct SubjectID, VisitName, Timepoint, Cohort, max(ColDateFmt) as ColDateFmt 
+  from test group by SubjectID, VisitName, Timepoint, Cohort')
+maxDate <- aggregate(ResultedDate_Fmt ~ SubjectID + VisitName + Timepoint + Cohort, data=test, FUN=max)
+
+### dplyr stuff ####
+MapInfo <- affyOutput %>% select(Chr, MapInfo) %>% distinct
+MapInfo_oldWay <- distinct(affyOutput[c("Chr", "MapInfo")])
+
+# verbose dplyr
+dupSNPs <- arrange(dupSNPs, Chr, MapInfo)
+# dplyr chain
+alt <- dupSNPs %>% arrange(Chr, MapInfo)
+
+
+
 ### base graphics ###
 plot(mpg ~ hp, data = mtcars, pch = 16, cex = .9)
 
