@@ -1,3 +1,16 @@
+regex <- "Cycle\\s+(\\d+)\\s+Day\\s+(\\d+)"
+m <- regexec(regex, l$VisitName)
+matchesList <- regmatches(l$VisitName, m)
+l$Cycle <- as.numeric(unlist(lapply(matchesList, FUN=function(x){x[2]})))
+l$Day <- as.numeric(unlist(lapply(matchesList, FUN=function(x){x[3]})))
+
+match## Using library(stringr), much nicer
+library(stringr)
+matchList2 <- str_match_all(l$VisitName, regex)
+l$Cycle <- as.numeric(unlist(lapply(matchesList, FUN=function(x){x[2]})))
+l$Day <- as.numeric(unlist(lapply(matchesList, FUN=function(x){x[3]})))
+##################
+
 test <- eval[eval$SubjectID %in% c("xxx","yyy","zzz"), ]
 test$ResultedDate_Fmt <- as.Date(test$ResultedDate, "%m/%d/%Y")
  ## ALT DATE ###
