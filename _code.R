@@ -1,3 +1,14 @@
+  file.names <- list.files(path = directory, full.names=T)
+  dat <- data.frame()
+  for (i in 1:length(file.names)) {
+    dat <- rbind(dat, read.csv(file.names[i]))
+  }
+  
+ 
+ #####
+ 
+
+
 regex <- "Cycle\\s+(\\d+)\\s+Day\\s+(\\d+)"
 m <- regexec(regex, l$VisitName)
 matchesList <- regmatches(l$VisitName, m)
