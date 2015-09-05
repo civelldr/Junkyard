@@ -1,3 +1,10 @@
+   
+   
+   f_g <- gather(f, position, value, -c(ElapsedHours, DateFmt))
+   f_mlt <- melt(f, id.vars = c("ElapsedHours", "DateFmt"), variable.name = "position")
+
+ 
+ 
   file.names <- list.files(path = directory, full.names=T)
   dat <- data.frame()
   for (i in 1:length(file.names)) {
